@@ -59,7 +59,6 @@ using ll = long long;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 #include "RandomMeldableHeap.hpp"
-#include "../ods_cpp/MeldableHeap.h"
 
 void kebab(string nome=""){
 	cin.tie(0); ios_base::sync_with_stdio(0);
@@ -100,7 +99,7 @@ void caso_teste(){
 		{
 		auto start = high_resolution_clock::now();
 		
-		RandomMeldableHeap pq;
+		RandomMeldableHeap<int> pq;
 		for(int i=0; i<n; i++) pq.push(a[i]);
 		for(int i=0; i<n; i++) {pq.top(); pq.pop();}
 		

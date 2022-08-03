@@ -15,19 +15,21 @@
 	
 */
 
+#pragma GCC optimize ("O3")
+#pragma GCC target ("avx2")
+
 #include <algorithm>
 #include "../PseudoRandomGenerators/xoroshiro32.hpp"
  
 using namespace std;
 xoroshiro32 xoroshiro;
 
-
-
+template<class T>
 class RandomMeldableHeap{
 	
 	class RMHnode{
 	public:
-		int value;
+		T value;
 		RMHnode *left, *right;
 		RMHnode(int x){
 			value=x;
@@ -55,7 +57,7 @@ public:
 		n=0;
 	}
 	
-	void push(int i){
+	void push(T i){
 		RMHnode *u=new RMHnode(i);
 		root=meld(root, u);
 		n++;
@@ -65,7 +67,7 @@ public:
 		return n;
 	}
 	
-	int top(){
+	T top(){
 		return root->value;
 	}
 	
