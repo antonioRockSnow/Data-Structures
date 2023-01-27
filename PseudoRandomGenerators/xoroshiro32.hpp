@@ -19,7 +19,6 @@ class xoroshiro32{
 	
 	unsigned int s[2]={1829817298,208261826};
 	unsigned int a=26, b=9, c=13, S=0x9E3779BB;
-	unsigned int last, i=31;
 	
 	static inline unsigned int rotl(unsigned int x, unsigned int k) {
 		return (x << k) | (x >> (32 - k));
@@ -44,14 +43,24 @@ public:
 		return ans;
 	}
 	
+	// [0, n[
+	int next_int(int n) {
+		return next()%n;
+	}
+	
+	// [a,b[
+	int next_interval(int a, int b) {
+		return a+(next()%(b - a));
+	}
+	
+	// [-d,d]
+	int next_delta(int d) {
+		return next(-d,d+1);
+	}
+	
+	//[0,1]
 	unsigned int bit(){
-		if(i==31){
-			i=0;
-			last=next();
-		}else{
-			i++;
-		}
-		return (last>>i)&1;
+		return (next()>>15)&1;
 	}
 	
 	int next_sign(){
@@ -59,7 +68,7 @@ public:
 	}
 	
 	double next_double(){
-		return ((double)next())/((double)UINT_MAX);
+		return (next()+0.5)/(4294967296.0);
 	}
 	
 	template<class T>
