@@ -49,13 +49,13 @@ public:
 	}
 	
 	// [a,b[
-	int next_interval(int a, int b) {
-		return a+(next()%(b - a));
+	int next_interval(int aa, int bb) {
+		return aa+(next()%(bb - aa));
 	}
 	
 	// [-d,d]
-	int next_delta(int d) {
-		return next(-d,d+1);
+	int next_delta(int dd) {
+		return next_interval(-dd,dd+1);
 	}
 	
 	//[0,1]
@@ -74,7 +74,7 @@ public:
 	template<class T>
 	void random_permutation(vector<T> &v){
 		int n=v.size();
-		for(int it=n-1; i>0; i--){
+		for(int it=n-1; it>0; it--){
 			swap(v[it], v[next()%(it+1)]);
 		}
 	}
@@ -82,7 +82,7 @@ public:
 	template<class T>
 	void random_permutation_no_fixed_point(vector<T> &v){
 		int n=v.size();
-		for(int it=n-1; i>0; i--){
+		for(int it=n-1; it>0; it--){
 			swap(v[it], v[next()%(it)]);
 		}
 	}
